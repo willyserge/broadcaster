@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body {
+   height: 100%;
+   background-color: #003f5c;
+   font-family: 'Roboto', sans-serif;
+    
+}
+.container{
+    min-height:100%;
+}
+
+.navbar {
+    padding: 35px 5%;
+    padding-top: 0px;
+    background: #111;
+}
+.navbar div{
+    padding: 10px 0px;
+}
+
+.navbar a {
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    font-family: calibri;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav {
+    float: right;
+}
+
+.nav a {
+    padding: 0px 5px;
+}
+#logo{
+    font-size: 20px;
+}
+.nav a:hover{
+    text-decoration: underline;
+    color: #4CAF50;
+}
+
+
+.case-categories{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+    text-align: center;
+    padding: 10px 0px;
+    width: 300px;
+    margin: 0px auto;
+}
+.case-categories div{
+    border: 2px solid black;
+    
+}
+.reports-section {
+    margin-top: 30px;
+}
+.reports-section .incident{
+    
+    background-color:#fff;
+    margin: 6px;
+    color: black;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 1s;
+}
+
+.incident:hover{
+    transform: scale(1.05);
+}
+.incident span{
+    cursor: pointer;
+    font-weight: bold;
+}
+.incident p{
+    margin: 5px 0px;
+    background: #fdf3f3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    cursor: context-menu;
+}
+.incident h3{
+    background-color: #fbe555;
+    color: black;
+    margin: 5px 0px;
+    cursor: context-menu;
+}
+.incident i{
+    cursor: pointer;
+}
+
+select{
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+
+#footer{
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    height: 100px;
+    margin-top: 100px;
+    clear: both;
+}
+#footer div{
+    text-align: center;
+    padding-top: 40px;
+}
+@media screen and (min-width:768px){
+
+    .reports-section{
+        margin: 0px 40px;
+        padding: 40px;
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .navbar{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 120px;
+        padding: 35px 5%;
+        background: #111;
+    }
+  }
+
+
+   
+   
+   /* for ipad pro */
+   @media screen and (min-width:1024px){
+       .navbar{
+           display: grid;
+           grid-template-columns: 2fr 1fr;
+           grid-gap: 0px;
+       }
+   }
+   /* for laptops*/
+   @media screen and (min-width:1280px){
+       .navbar{
+           display: grid;
+           grid-template-columns: 3fr 1fr;
+           grid-gap: 0px;
+       }
+   }
