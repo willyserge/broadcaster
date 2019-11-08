@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body {
+   height: 100%;
+   background-color: #003f5c;
+   font-family: 'Roboto', sans-serif;
+    
+}
+.container{
+    min-height:100%;
+}
+
+.navbar {
+    padding: 35px 5%;
+    padding-top: 0px;
+    background: #111;
+}
+.navbar div{
+    padding: 10px 0px;
+}
+
+.navbar a {
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    font-family: calibri;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav {
+    float: right;
+}
+
+.nav a {
+    padding: 0px 5px;
+}
+#logo{
+    font-size: 20px;
+}
+.nav a:hover{
+    text-decoration: underline;
+    color: #4CAF50;
+}
+
+
+
+
+.form {
+    width: 270px;
+    margin: 150px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .1);
+    border-radius: 4px;
+}
+
+input,select {
+    height: 35px;
+    width: 90%;
+    padding-left: 10%;
+    background: #eee;
+    border: none;
+    border-radius: 4px;
+    margin-top: 25px;
+    
+    letter-spacing: 1px;
+    outline: none;
+}
+select{
+  width: 50%;
+}
+textarea{
+    resize: vertical;
+    padding-left: 10%;
+    background: #eee;
+    border: none;
+    border-radius: 4px;
+    margin-top: 25px;
+    color: black;
+    letter-spacing: 1px;
+    outline: none;
+}
+button {
+    height: 40px;
+    width: 100%;
+    background: linear-gradient(to left, #00E2FF, #0695FE);
+    border: none;
+    border-radius: 4px;
+    margin-top: 25px;
+    
+    letter-spacing: 1px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+
+.form a {
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0px 18px;
+    margin-top: 20px;
+    color: #0695FE;
+    
+}
+
+.form a:hover {
+    text-decoration: underline;
+}
+.form .title{
+  font-size: 20px;
+  font-family: Lucida Handwriting;
+}
+
+#footer{
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    height: 100px;
+    margin-top: 100px;
+    clear: both;
+}
+#footer div{
+    text-align: center;
+    padding-top: 40px;
+}
+
+@media screen and (min-width:768px){
+
+    .navbar{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 120px;
+        padding: 35px 5%;
+        background: #111;
+    }
+  }
+
+
+   
+   
+   /* for ipad pro */
+   @media screen and (min-width:1024px){
+       .navbar{
+           display: grid;
+           grid-template-columns: 2fr 1fr;
+           grid-gap: 0px;
+       }
+        .form{
+        width: 500px;
+       }
+       textarea{
+        width: 400px;
+       }
+   }
+   /* for laptops*/
+   @media screen and (min-width:1280px){
+       .navbar{
+           display: grid;
+           grid-template-columns: 3fr 1fr;
+           grid-gap: 0px;
+       }
+       .form{
+        width: 500px;
+       }
+       textarea{
+        width: 400px;
+       }
+   }
