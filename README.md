@@ -15,7 +15,7 @@ Features
 4.Users can delete their red-flag or intervention records.  
 5.Users can add geolocation (Lat Long Coordinates) to their red-flag or intervention records .  
 6.Users can change the geolocation (Lat Long Coordinates) attached to their red-flag or intervention records .  
-7.Admin can change the status of a record to either under investigation, rejected (in the event of a false claim) or resolved (in the event that the claim has been investigated and resolved) .     
+7.Admin can change the status of a record to either under investigation, rejected (in the event of a false claim) or resolved (in the event that the claim has been investigated and resolved).     
 
 
 UI TEMPLATE : https://willyserge.github.io/broadcaster/UI
