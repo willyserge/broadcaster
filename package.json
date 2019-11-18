@@ -1,0 +1,43 @@
+{
+  "name": "broadcaster",
+  "version": "1.0.0",
+  "description": "Broadcaster enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require @babel/register server/test --exit",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "build": "babel server -d dist",
+    "start": "npm run build && nodemon dist/index.js",
+    "serve": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willyserge/broadcaster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willyserge/broadcaster/issues"
+  },
+  "homepage": "https://github.com/willyserge/broadcaster#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.7",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
