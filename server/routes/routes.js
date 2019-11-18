@@ -6,5 +6,6 @@ router.get('/test',(req,res)=>{
 })
 //sign up route
 router.post('/api/v1/auth/signup',User.signUp);
+router.post('/api/v1/auth/signin',User.signIn);
 
 export default router;

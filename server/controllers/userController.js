@@ -5,6 +5,10 @@ import Validate from '../helpers/validator'
 import Auth from '../helpers/authHelpers'
 class User{
 
+    static async getAllUsers (req, res) {
+       res.json(users);     
+    }
+
     //registering users
     static async signUp (req, res) {
         // validate inputs first
@@ -13,7 +17,10 @@ class User{
 
         //find if the user with the given email exist
         let user= users.find((user) => user.email == req.body.email )
-        if(user) return res.status(400).send('user with the given email already exists');
+        if(user) return res.status(400).send({
+          status:401,
+          error:'Email already exist'
+        });
         //initialize and create  new user 
         user={
           id:users.length+1,
@@ -40,5 +47,34 @@ class User{
            
     }
 
+    //authenticating users
+    static async signIn(req, res){
+        //validate inputs first
+        const {error}= await Validate.signIn(req.body);
+        if(error) return res.status(400).send(error.details[0].message);
+        //find if the user with the given email exist
+        let user= users.find((user) => user.email == req.body.email )
+        if(!user) return res.status(400).send({
+          status:401,
+          error:'invalid Email or Password'
+        });
+
+        const validPassword= await Auth.comparePassword(req.body.password,user.password);
+        if(!validPassword) return res.status(400).send({
+          status:401,
+          error:'invalid Email or Password'
+        });
+
+        const token=await Auth.generateToken(user.id);
+        res.header('x-auth-token',token).status(200).send({
+            status: 200,
+            message:"User is successfuly logged in",
+            data: [{
+              token,
+              user: _.pick(user,['firstname','lastname']),
+            }],
+          });
+
+    }
 }
 export default User;

@@ -13,5 +13,14 @@ class Validate {
         return schema.validate(userInfo);
     }
 
+    static async signIn(credentials){
+        const schema = Joi.object({
+           email: Joi.string().email().required(),
+            password: Joi.string().min(6).required()
+        })
+
+        return schema.validate(credentials);
+    }
+
 }
 export default Validate;

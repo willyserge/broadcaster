@@ -33,6 +33,29 @@ describe("Server", () => {
         });
     });
   });
+  //sign in route test
+  describe('POST /api/v1/auth/signin', () => {
+    it('should login user and return auth token', (done) => {
+      const user = {
+        email: 'user@gmail.com',
+        password: 'userPassword',
+      };
+  
+      chai.request(app)
+        .post('/api/v1/auth/signin')
+        .send(user)
+        .end((err, res) => {
+          expect(res.status).to.be.equal(200);
+          expect(res.body.status).to.be.equal(200);
+          expect(res.body.message).to.be.equal("User is successfuly logged in");
+          expect(res.body).to.be.a('Object');
+          expect(res.body.data).to.have.lengthOf(1);
+          expect(res.body.data[0].token);
+          done();
+          
+        });
+    });
+  });
  
   });
 
