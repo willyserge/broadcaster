@@ -1,12 +1,11 @@
 import express from "express";
 import dotenv from 'dotenv';
+import router from './routes/routes.js'
 const app = express();
 dotenv.config();
 
-app.get("/", (req, res) => {
-    res.json({ status: "success", message: "Welcome To Broadcaster" });
-  });
-
+app.use(express.json())
+app.use('/',router);
 
 const PORT = process.env.PORT || 3000;
 
