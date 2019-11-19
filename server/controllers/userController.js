@@ -83,9 +83,8 @@ class User{
       
          res.status(200).send({
              status:200,
-             data:[
-                 redfrags
-             ]
+             data: redfrags
+             
          })
       }
 }
