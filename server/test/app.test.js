@@ -56,7 +56,7 @@ describe("Server", () => {
         });
     });
   });
-
+  //test get all red flags route
   describe('GET /api/v1/red-flags', () => {
     it('should get all red-flag records', (done) => {
       chai.request(app)
@@ -65,7 +65,21 @@ describe("Server", () => {
         .end((err, res) => {
           expect(res.body.status).to.be.equal(200);
           expect(res.body).to.be.a('Object');
-          expect(res.body.data).to.have.lengthOf(2);
+          expect(res.body.data[0].type).to.have.string('red-flag');
+          done(err);
+        });
+    });
+  });
+  //test get red-flag by id
+  describe('GET /api/v1/red-flags/id', () => {
+    it('should get a red-flag record by its ID', (done) => {
+
+      chai.request(app)
+        .get('/api/v1/red-flags/1')
+        .set('x-auth-token',process.env.test_token)
+        .end((err, res) => {
+          expect(res.body.status).to.be.equal(200);
+          expect(res.body).to.be.a('Object');
           expect(res.body.data[0].type).to.have.string('red-flag');
           done(err);
         });
