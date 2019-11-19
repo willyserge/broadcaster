@@ -1,13 +1,8 @@
 import _ from 'lodash';
 import users from '../data/users'
-import incidents from '../data/incidents'
 import Validate from '../helpers/validator'
 import Auth from '../helpers/authHelpers'
 class User{
-
-    static async getAllUsers (req, res) {
-       res.json(users);     
-    }
 
     //registering users
     static async signUp (req, res) {
@@ -76,16 +71,6 @@ class User{
           });
 
     }
-    //get all redfrag record
-    static async getAllRedFrags(req,res){
-      const id=req.user.id;
-      let redfrags=incidents.filter((incident) => incident.createdBy == id)
-      
-         res.status(200).send({
-             status:200,
-             data: redfrags
-             
-         })
-      }
+    
 }
 export default User;
