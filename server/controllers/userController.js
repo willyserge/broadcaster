@@ -1,6 +1,6 @@
-import "@babel/polyfill";
 import _ from 'lodash';
 import users from '../data/users'
+import incidents from '../data/incidents'
 import Validate from '../helpers/validator'
 import Auth from '../helpers/authHelpers'
 class User{
@@ -33,7 +33,7 @@ class User{
 
         }
         
-        const token=await Auth.generateToken(user.id);
+        const token=await Auth.generateToken(user.id,user.firstname);
         user.password= await Auth.hashPassword(user.password);
         users.push(user);
         //response spec
@@ -41,7 +41,7 @@ class User{
             status: 201,
             data: [{
               token,
-              user: _.pick(user,['firstname','lastname','username','email']),
+              user: _.pick(user,['firstname','lastname','username','email','password']),
             }],
           });
            
@@ -76,5 +76,17 @@ class User{
           });
 
     }
+    //get all redfrag record
+    static async getAllRedFrags(req,res){
+      const id=req.user.id;
+      let redfrags=incidents.filter((incident) => incident.createdBy == id)
+      
+         res.status(200).send({
+             status:200,
+             data:[
+                 redfrags
+             ]
+         })
+      }
 }
 export default User;
