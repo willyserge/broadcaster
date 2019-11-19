@@ -56,6 +56,21 @@ describe("Server", () => {
         });
     });
   });
+
+  describe('GET /api/v1/red-flags', () => {
+    it('should get all red-flag records', (done) => {
+      chai.request(app)
+        .get('/api/v1/red-flags')
+        .set('x-auth-token',process.env.test_token)
+        .end((err, res) => {
+          expect(res.body.status).to.be.equal(200);
+          expect(res.body).to.be.a('Object');
+          expect(res.body.data).to.have.lengthOf(2);
+          expect(res.body.data[0].type).to.have.string('red-flag');
+          done(err);
+        });
+    });
+  });
  
   });
 

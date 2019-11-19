@@ -8,10 +8,10 @@ const users = [
       phoneNumber: '+250784079275',
       registered: new Date().toISOString(),
       isAdmin: true,
-      password: '12345678',
+      password: "$2b$08$4wHR2RlYruz.Falax2KS9.bWrrKBKTNK8B.0K.3Lt.PHPrxP/zJv2",
     },
     {
-      id: 2,
+      id: 3,
       firstname: 'emmanuel',
       lastname: 'turatsinze',
       username: 'emmyturatsinze',
