@@ -8,7 +8,10 @@ class User{
     static async signUp (req, res) {
         // validate inputs first
         const {error}= await Validate.register(req.body);
-        if(error) return res.status(400).send(error.details[0].message);
+        if(error) return res.status(400).send({
+          status:400,
+          error:error.details[0].message
+        });
 
         //find if the user with the given email exist
         let user= users.find((user) => user.email == req.body.email )
