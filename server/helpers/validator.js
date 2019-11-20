@@ -36,6 +36,12 @@ class Validate {
          })
          return schema.validate(location);
     }
+    static async updateComment(comment){
+        const schema = Joi.object({
+            comment: Joi.string().min(10).max(150).required(),
+         })
+         return schema.validate(comment);
+    }
 
 
 }
