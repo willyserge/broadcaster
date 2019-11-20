@@ -12,6 +12,8 @@ router.post('/api/v1/auth/signin',User.signIn);
 router.get('/api/v1/red-flags',Auth.verifyToken,Records.getAllRedFrags);
 router.get('/api/v1/red-flags/:id',Auth.verifyToken,Records.getRedFlagById);
 router.post('/api/v1/red-flags',Auth.verifyToken,Records.createRedFlag);
+router.patch('/api/v1/red-flags/:id/location',Auth.verifyToken,Records.updateLocation);
+
 
 
 export default router;
