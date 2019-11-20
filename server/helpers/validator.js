@@ -30,6 +30,7 @@ class Validate {
          })
          return schema.validate(data);
     }
+   
 
 }
 export default Validate;

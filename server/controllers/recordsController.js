@@ -17,16 +17,22 @@ class Records{
       static async getRedFlagById(req,res){
          const id =parseInt(req.params.id);
          const redFlag=incidents.find((incident) => incident.id == id);
-         if (!redFlag) return res.status(404).send({
-          status:404,
-          error: 'a red-flag with the given ID was not found.'
-          
-         })
-         res.status(200).send({
-          status:200,
-          data: [redFlag]
-          
-      })
+
+         if(redFlag.createdBy ==req.user.id){
+          res.status(200).send({
+            status:200,
+            data: [redFlag]
+            
+        })
+         }
+         else{
+            res.status(404).send({
+            status:404,
+            error: 'a red-flag with the given ID was not found.'
+            
+           })
+         } 
+        
 
       }
       //create a red flag record 
@@ -62,5 +68,7 @@ class Records{
           });
 
       }
+
+
 }
 export default Records;
