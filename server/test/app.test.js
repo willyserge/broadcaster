@@ -85,6 +85,36 @@ describe("Server", () => {
         });
     });
   });
+
+  //test create red-flag
+
+  describe('POST /api/v1/red-flags', () => {
+    it('should create a red-flag record', (done) => {
+
+     // other specs for the redflag are specified in the pushed object
+      const redFlag={
+
+        title:'test title',
+        location:'1.9706, 30.1044',
+        comment: 'test comment'
+
+    }
+  
+      chai.request(app)
+        .post('/api/v1/red-flags')
+        .set('x-auth-token',process.env.test_token)
+        .send(redFlag)
+        .end((err, res) => {
+          expect(res.status).to.be.equal(201);
+          expect(res.body.status).to.be.equal(201);
+          expect(res.body).to.be.a('Object');
+          expect(res.body.data).to.have.lengthOf(1);
+          expect(res.body.data[0].message).to.be.equal("Created red-flag record");;
+          done();
+          
+        });
+    });
+  });
  
   });
 
