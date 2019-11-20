@@ -82,7 +82,12 @@ class Records{
           redFlag.location = req.body.location;
           res.status(200).send({
             status:200,
-            data: [redFlag]
+            data: [
+              {
+                id:redFlag.id,
+                message: "Updated red-flag record's location"
+              }
+            ]
             
         })
          }
