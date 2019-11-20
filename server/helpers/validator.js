@@ -30,7 +30,13 @@ class Validate {
          })
          return schema.validate(data);
     }
-   
+    static async updateLocation(location){
+        const schema = Joi.object({
+            location: Joi.string().min(6).required(),
+         })
+         return schema.validate(location);
+    }
+
 
 }
 export default Validate;
