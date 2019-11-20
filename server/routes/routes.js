@@ -14,5 +14,4 @@ router.get('/api/v1/red-flags/:id',Auth.verifyToken,Records.getRedFlagById);
 router.post('/api/v1/red-flags',Auth.verifyToken,Records.createRedFlag);
 
 
-
 export default router;
