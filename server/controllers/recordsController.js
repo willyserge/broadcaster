@@ -7,7 +7,6 @@ class Records{
     static async getAllRedFrags(req,res){
       const id=req.user.id;
       let redflags=incidents.filter((incident) => incident.createdBy == id)
-      
          res.status(200).send({
              status:200,
              data: redflags
@@ -28,6 +27,39 @@ class Records{
           data: [redFlag]
           
       })
+
+      }
+      //create a red flag record 
+
+      static async createRedFlag(req,res){
+       
+          const {error}= await Validate.createRedFlag(req.body);
+          if(error) return res.status(400).send({
+            status:400,
+            error:error.details[0].message
+          });
+
+          const redFlag={
+              id:incidents.length+1,
+              createdOn: new Date().toISOString(),
+              createdBy: req.user.id,
+              type: 'red-flag',
+              location:req.body.location,
+              status: 'draft',
+              images: [],
+              videos: [],
+              comment: req.body.comment
+
+          }
+          incidents.push(redFlag);
+          res.header('x-auth-token',req.token).status(201).send({
+            status: 201,
+            data: [{
+              id:redFlag.id,
+              "message":"Created red-flag record"
+              
+            }],
+          });
 
       }
 }

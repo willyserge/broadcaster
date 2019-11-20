@@ -22,5 +22,14 @@ class Validate {
         return schema.validate(credentials);
     }
 
+    static async createRedFlag(data){
+        const schema = Joi.object({
+            title: Joi.string().min(6).required(),
+            comment: Joi.string().min(6).max(150).required(),
+            location:Joi.string().required()
+         })
+         return schema.validate(data);
+    }
+
 }
 export default Validate;

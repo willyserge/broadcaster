@@ -10,6 +10,7 @@ class Auth{
         
         const decoded = jwt.verify(token,process.env.jwtPrivateKey);
         req.user = decoded; 
+        req.token=token;
         next();
       }
       catch (ex) {
