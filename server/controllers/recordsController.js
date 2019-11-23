@@ -140,7 +140,27 @@ class Records{
       }
 
      }
+     //delete redflag record
+     static async deleteRedflag(req,res){
 
+      const id =parseInt(req.params.id);
+      const redFlag=incidents.find((incident)=>incident.id==id && incident.createdBy==req.user.id)
+      if(!redFlag){ res.status(404).send({
+             status:404,
+             error: 'a red-flag with the given ID was not found.'
+            })
+           }
+     else{
+      const index = incidents.indexOf(redFlag);
+      incidents.splice(index, 1);
+    
+      res.send({
+        id:redFlag.id,
+        message:"red-flag record has been deleted"
+      });
+     }
+
+     }
 
    }
      
