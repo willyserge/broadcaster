@@ -68,7 +68,7 @@ class Records{
           });
 
       }
-
+   // update red-flag location
       static async updateLocation(req,res){
          const id =parseInt(req.params.id);
          const redFlag=incidents.find((incident) => incident.id == id);
@@ -99,15 +99,41 @@ class Records{
            })
          } 
 
-
-
-
-
-         
-          // redFlag.location = req.body.location;
-          // res.send(redFlag);
-
-
       }
+
+      //udate redflag comment
+
+      static async updateComment(req,res){
+        const id =parseInt(req.params.id);
+        const redFlag=incidents.find((incident) => incident.id == id);
+
+        if(redFlag.createdBy ==req.user.id){
+         const {error}= await Validate.updateComment(req.body);
+         if(error) return res.status(400).send({
+           status:400,
+           error:error.details[0].message
+         });
+         redFlag.location = req.body.comment;
+         res.status(200).send({
+           status:200,
+           data: [
+             {
+               id:redFlag.id,
+               message: "Updated red-flag record's comment"
+             }
+           ]
+           
+       })
+        }
+        else{
+           res.status(404).send({
+           status:404,
+           error: 'a red-flag with the given ID was not found.'
+           
+          })
+        } 
+
+     }
+
 }
 export default Records;
