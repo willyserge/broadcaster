@@ -42,6 +42,12 @@ class Validate {
          })
          return schema.validate(comment);
     }
+    static async changeStatus(status){
+        const schema = Joi.object({
+            status: Joi.string().min(10).required(),
+         })
+         return schema.validate(status);
+    }
 
 
 }

@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'
 class Auth{
-    static async generateToken(id,firstname){
-        const token= jwt.sign({id,firstname},process.env.jwtPrivateKey);
+    static async generateToken(id){
+        const token= jwt.sign({id},process.env.jwtPrivateKey);
         return token;
     }
     static async hashPassword(password) {

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import users from '../data/users'
 class Auth{
     static async verifyToken(req,res,next){
       const token=req.header('x-auth-token');
@@ -9,7 +10,8 @@ class Auth{
        try {
         
         const decoded = jwt.verify(token,process.env.jwtPrivateKey);
-        req.user = decoded; 
+        const user = decoded;
+        req.user=users.find((u)=>u.id==user.id);
         req.token=token;
         next();
       }
