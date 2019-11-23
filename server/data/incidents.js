@@ -5,7 +5,7 @@ const incidents=[
         createdBy: 3,
         type: 'red-flag',
         location: '1.9706, 30.1044',
-        status: 'draft',
+        status: 'under investigation',
         images: [],
         videos: [],
         comment: 'corruption among land officers',

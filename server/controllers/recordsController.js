@@ -6,34 +6,34 @@ class Records{
     //get all redfrag record
     static async getAllRedFrags(req,res){
       const id=req.user.id;
-      let redflags=incidents.filter((incident) => incident.createdBy == id)
+     
+      const redflags= incidents.filter((incident) => incident.createdBy == id)
+      
+      if(!redflags[0])res.status(204).send({
+            status:204,
+            error: 'no red-flag records.'
+           })
+     
          res.status(200).send({
              status:200,
-             data: redflags
-             
+             data: redflags   
          })
+        
       }
+      
     // get red-flag record by id
       static async getRedFlagById(req,res){
          const id =parseInt(req.params.id);
-         const redFlag=incidents.find((incident) => incident.id == id);
-
-         if(redFlag.createdBy ==req.user.id){
-          res.status(200).send({
-            status:200,
-            data: [redFlag]
-            
-        })
-         }
-         else{
-            res.status(404).send({
-            status:404,
-            error: 'a red-flag with the given ID was not found.'
-            
-           })
-         } 
-        
-
+         const redFlag=incidents.find((incident)=>incident.id==id && incident.createdBy==req.user.id)
+         if(!redFlag) res.status(404).send({
+                status:404,
+                error: 'a red-flag with the given ID was not found.'
+               })
+         res.status(200).send({
+          status:200,
+          data: [redFlag]
+          
+          })
       }
       //create a red flag record 
 
@@ -58,7 +58,7 @@ class Records{
 
           }
           incidents.push(redFlag);
-          res.header('x-auth-token',req.token).status(201).send({
+          res.status(201).send({
             status: 201,
             data: [{
               id:redFlag.id,
@@ -71,10 +71,16 @@ class Records{
    // update red-flag location
       static async updateLocation(req,res){
          const id =parseInt(req.params.id);
-         const redFlag=incidents.find((incident) => incident.id == id);
-
-         if(redFlag.createdBy ==req.user.id){
-          const {error}= await Validate.updateLocation(req.body);
+         const redFlag=incidents.find((incident)=>incident.id==id && incident.createdBy==req.user.id)
+         if(!redFlag) res.status(404).send({
+          status:404,
+          error: 'a red-flag with the given ID was not found.'
+         })
+         else if(redFlag.status !=='draft') res.status(405).send({
+          status:405,
+          error: 'you can no longer edit the location of this red-flag.'
+         })
+         const {error}= await Validate.updateLocation(req.body);
           if(error) return res.status(400).send({
             status:400,
             error:error.details[0].message
@@ -90,14 +96,6 @@ class Records{
             ]
             
         })
-         }
-         else{
-            res.status(404).send({
-            status:404,
-            error: 'a red-flag with the given ID was not found.'
-            
-           })
-         } 
 
       }
 
@@ -105,10 +103,13 @@ class Records{
 
       static async updateComment(req,res){
         const id =parseInt(req.params.id);
-        const redFlag=incidents.find((incident) => incident.id == id);
-
-        if(redFlag.createdBy ==req.user.id){
-         const {error}= await Validate.updateComment(req.body);
+        const redFlag=incidents.find((incident)=>incident.id==id && incident.createdBy==req.user.id)
+        if(!redFlag) res.status(404).send({
+         status:404,
+         error: 'a red-flag with the given ID was not found.'
+        })
+       
+        const {error}= await Validate.updateComment(req.body);
          if(error) return res.status(400).send({
            status:400,
            error:error.details[0].message
@@ -124,16 +125,12 @@ class Records{
            ]
            
        })
-        }
-        else{
-           res.status(404).send({
-           status:404,
-           error: 'a red-flag with the given ID was not found.'
-           
-          })
-        } 
 
      }
 
-}
+
+   }
+     
+
+
 export default Records;
