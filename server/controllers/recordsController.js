@@ -9,15 +9,17 @@ class Records{
      
       const redflags= incidents.filter((incident) => incident.createdBy == id)
       
-      if(!redflags[0])res.status(204).send({
+      if(!redflags[0]){res.status(204).send({
             status:204,
             error: 'no red-flag records.'
            })
-     
+          }
+          else{
          res.status(200).send({
              status:200,
              data: redflags   
          })
+        }
         
       }
       
@@ -25,15 +27,18 @@ class Records{
       static async getRedFlagById(req,res){
          const id =parseInt(req.params.id);
          const redFlag=incidents.find((incident)=>incident.id==id && incident.createdBy==req.user.id)
-         if(!redFlag) res.status(404).send({
+         if(!redFlag){ res.status(404).send({
                 status:404,
                 error: 'a red-flag with the given ID was not found.'
                })
+              }
+        else{
          res.status(200).send({
           status:200,
           data: [redFlag]
           
           })
+        }
       }
       //create a red flag record 
 
@@ -72,14 +77,18 @@ class Records{
       static async updateLocation(req,res){
          const id =parseInt(req.params.id);
          const redFlag=incidents.find((incident)=>incident.id==id && incident.createdBy==req.user.id)
-         if(!redFlag) res.status(404).send({
+         if(!redFlag){
+           res.status(404).send({
           status:404,
           error: 'a red-flag with the given ID was not found.'
          })
-         else if(redFlag.status !=='draft') res.status(405).send({
+        }
+         else if(redFlag.status !=='draft'){ res.status(405).send({
           status:405,
           error: 'you can no longer edit the location of this red-flag.'
          })
+        }
+        else{
          const {error}= await Validate.updateLocation(req.body);
           if(error) return res.status(400).send({
             status:400,
@@ -96,6 +105,7 @@ class Records{
             ]
             
         })
+      }
 
       }
 
@@ -104,10 +114,12 @@ class Records{
       static async updateComment(req,res){
         const id =parseInt(req.params.id);
         const redFlag=incidents.find((incident)=>incident.id==id && incident.createdBy==req.user.id)
-        if(!redFlag) res.status(404).send({
+        if(!redFlag){ res.status(404).send({
          status:404,
          error: 'a red-flag with the given ID was not found.'
         })
+      }
+      else{
        
         const {error}= await Validate.updateComment(req.body);
          if(error) return res.status(400).send({
@@ -125,6 +137,7 @@ class Records{
            ]
            
        })
+      }
 
      }
 
