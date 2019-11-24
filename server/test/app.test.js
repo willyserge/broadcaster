@@ -276,7 +276,21 @@ describe("Server", () => {
     });
   });
  
-
+describe('GET api/v1/incidents/admin',()=>{
+  it('should list all incidents by all users',(done)=>{
+     chai.request(app)
+     .get('/api/v1/incidents/admin')
+     .set('x-auth-token',process.env.test_token)
+     .end((err,res)=>{
+       expect(res.status).to.be.equal(200)
+       expect(res.body.status).to.be.equal(200);
+       expect(res.body).to.be.a('Object');
+       done()
+     })
+  })
+     
+  
+})
   });
 
 
