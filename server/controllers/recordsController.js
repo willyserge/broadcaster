@@ -154,9 +154,15 @@ class Records{
       const index = incidents.indexOf(redFlag);
       incidents.splice(index, 1);
     
-      res.send({
-        id:redFlag.id,
-        message:"red-flag record has been deleted"
+      res.status(200).send({
+        status:200,
+        data:[
+          {
+            id:redFlag.id,
+            message:"red-flag record has been deleted"
+          }
+        ]
+        
       });
      }
 
