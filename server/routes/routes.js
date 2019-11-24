@@ -14,6 +14,7 @@ router.patch('/red-flags/:id/location',Auth.verifyToken,Records.updateLocation);
 router.patch('/red-flags/:id/comment',Auth.verifyToken,Records.updateComment);
 router.delete('/red-flags/:id',Auth.verifyToken,Records.deleteRedflag);
 router.patch('/red-flags/:id/status',Auth.verifyToken,Admin.authenticate,Records.changeStatus);
+router.get('/incidents/admin',Auth.verifyToken,Admin.authenticate,Records.AdminGetAllRedFrags);
 
 
 

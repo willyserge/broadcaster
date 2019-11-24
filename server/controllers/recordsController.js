@@ -200,6 +200,16 @@ class Records{
 
      }
 
+     // admin should get all red-flags
+     static async AdminGetAllRedFrags(req,res){
+       res.status(200).send(
+         {
+          status:200,
+          data: incidents
+         }
+        )
+     }
+
    }
      
 
