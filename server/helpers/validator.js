@@ -44,7 +44,7 @@ class Validate {
     }
     static changeStatus(status){
         const schema = Joi.object({
-            status: Joi.string().min(10).required(),
+            status: Joi.string().min(5).required(),
          })
          return schema.validate(status);
     }

@@ -7,8 +7,12 @@
     "test": "mocha --require @babel/register server/test --exit",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "build": "babel server -d dist",
-    "start": "npm run build && nodemon dist/index.js",
+    "start": "node dist/index.js",
     "serve": "node dist/index.js"
+  },
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.4.1"
   },
   "repository": {
     "type": "git",
