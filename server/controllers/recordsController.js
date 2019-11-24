@@ -54,6 +54,7 @@ class Records{
 
           const redFlag={
               id:incidents.length+1,
+              title:req.body.title,
               createdOn: new Date().toISOString(),
               createdBy: req.user.id,
               type: 'red-flag',
