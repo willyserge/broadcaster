@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/willyserge/broadcaster.svg?branch=ft-create-sign-up-route-162836478)](https://travis-ci.org/willyserge/broadcaster)
-[![Coverage Status](https://coveralls.io/repos/github/willyserge/broadcaster/badge.svg?branch=develop)](https://coveralls.io/github/willyserge/broadcaster?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/willyserge/broadcaster/badge.svg?branch=ch-tests-169932313)](https://coveralls.io/github/willyserge/broadcaster?branch=ch-tests-169932313)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0a7528fefcb24c5b86d7/maintainability)](https://codeclimate.com/github/willyserge/broadcaster/maintainability)
 
 # broadcaster

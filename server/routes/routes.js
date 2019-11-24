@@ -5,15 +5,15 @@ import Auth from '../middleware/auth'
 import Admin from '../middleware/admin'
 const router=express.Router();
 
-router.post('/api/v1/auth/signup',User.signUp);
-router.post('/api/v1/auth/signin',User.signIn);
-router.get('/api/v1/red-flags',Auth.verifyToken,Records.getAllRedFrags);
-router.get('/api/v1/red-flags/:id',Auth.verifyToken,Records.getRedFlagById);
-router.post('/api/v1/red-flags',Auth.verifyToken,Records.createRedFlag);
-router.patch('/api/v1/red-flags/:id/location',Auth.verifyToken,Records.updateLocation);
-router.patch('/api/v1/red-flags/:id/comment',Auth.verifyToken,Records.updateComment);
-router.delete('/api/v1/red-flags/:id',Auth.verifyToken,Records.deleteRedflag);
-router.patch('/api/v1/red-flags/:id/status',Auth.verifyToken,Admin.authenticate,Records.changeStatus);
+router.post('/auth/signup',User.signUp);
+router.post('/auth/signin',User.signIn);
+router.get('/red-flags',Auth.verifyToken,Records.getAllRedFrags);
+router.get('/red-flags/:id',Auth.verifyToken,Records.getRedFlagById);
+router.post('/red-flags',Auth.verifyToken,Records.createRedFlag);
+router.patch('/red-flags/:id/location',Auth.verifyToken,Records.updateLocation);
+router.patch('/red-flags/:id/comment',Auth.verifyToken,Records.updateComment);
+router.delete('/red-flags/:id',Auth.verifyToken,Records.deleteRedflag);
+router.patch('/red-flags/:id/status',Auth.verifyToken,Admin.authenticate,Records.changeStatus);
 
 
 
