@@ -91,30 +91,33 @@ html,body {
     padding-bottom: 8px;
     padding-left: 10px;
     padding-right: 10px;
-    transition: all 1s;
+    
 }
 
-.incident:hover{
-    transform: scale(1.05);
-}
+
 .incident span{
     cursor: pointer;
     font-weight: bold;
+    padding: 0px 5px;
 }
 .incident p{
     margin: 5px 0px;
+    padding: 5px;
     background: #fdf3f3;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     cursor: context-menu;
 }
 .incident h3{
     background-color: #fbe555;
+    padding-left: 5px;
     color: black;
     margin: 5px 0px;
     cursor: context-menu;
 }
 .incident i{
     cursor: pointer;
+    padding-left: 5px;
+    padding-top: 5px;
 }
 
 select{
