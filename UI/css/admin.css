@@ -74,37 +74,91 @@ html,body {
     padding-bottom: 8px;
     padding-left: 10px;
     padding-right: 10px;
-    transition: all 1s;
+    
 }
 
-.incident:hover{
-    transform: scale(1.05);
-}
+
 .incident span{
     cursor: pointer;
     font-weight: bold;
+    padding: 0px 5px;
 }
 .incident p{
     margin: 5px 0px;
+    padding: 5px;
     background: #fdf3f3;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     cursor: context-menu;
 }
 .incident h3{
+
     background-color: #fbe555;
+    padding-left: 5px;
     color: black;
     margin: 5px 0px;
     cursor: context-menu;
 }
 .incident i{
     cursor: pointer;
+    padding-left: 5px;
+    padding-top: 5px;
 }
 
-select{
+select , .update-status-btn{
     float: right;
     margin-right: 10px;
     cursor: pointer;
+    padding: 3px 3px;
 }
+.update-status-btn{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 
 
@@ -137,7 +191,11 @@ select{
         padding: 35px 5%;
         background: #111;
     }
+
   }
+
+
+
 
 
    
