@@ -1,8 +1,18 @@
-const login_btn=document.querySelector('#login-btn');
-const home_btn=document.querySelector('#homeToLogin-btn');
+const modal = document.querySelector('#myModal');
+const image_display = document.querySelectorAll('.img-display');
+const span = document.querySelectorAll(".close")[0];
 
-login_btn.addEventListener('click',()=>{
-	location.replace("userProfile.html")
-});
+image_display.forEach((img)=>{
+	img.addEventListener('click',()=>{
+	modal.style.display = "block";
+})
+})
+span.addEventListener('click',()=>{
+	modal.style.display = "none";
+})
 
-
+window.onclick = (event)=> {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
