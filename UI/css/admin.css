@@ -92,7 +92,7 @@ html,body {
 }
 .incident h3{
 
-    background-color: #fbe555;
+    background-color: #E5FF63;
     padding-left: 5px;
     color: black;
     margin: 5px 0px;
@@ -188,7 +188,7 @@ select , .update-status-btn{
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 120px;
-        padding: 35px 5%;
+        padding: 10px 5%;
         background: #111;
     }
 
