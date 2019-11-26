@@ -138,7 +138,7 @@ button {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 120px;
-        padding: 35px 5%;
+        padding: 10px 5%;
         background: #111;
     }
   }
