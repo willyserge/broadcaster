@@ -25,6 +25,7 @@ class Validate {
     static createRedFlag(data){
         const schema = Joi.object({
             title: Joi.string().min(6).required(),
+             type: Joi.string().valid('red-flag','intervention').required(),
             comment: Joi.string().min(6).max(150).required(),
             location:Joi.string().required()
          })
@@ -44,7 +45,7 @@ class Validate {
     }
     static changeStatus(status){
         const schema = Joi.object({
-            status: Joi.string().min(5).required(),
+            status: Joi.string().valid('resolved','rejected','under investigation').required(),
          })
          return schema.validate(status);
     }
