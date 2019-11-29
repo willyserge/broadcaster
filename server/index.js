@@ -12,7 +12,7 @@ app.use(express.json())
 app.use('/api/v1/',router);
 //documentation route
 app.get('/',(req,res)=>res.status(200).json({
-    message:'you can view the documentation of the API on the link below',
+    message:'Welcome to Broadcaster. you can view the documentation of the API on the link below',
     link:'https://documenter.getpostman.com/view/8773430/SW7gUQu5'
 
 }))
