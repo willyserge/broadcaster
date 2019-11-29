@@ -96,6 +96,7 @@ describe("Server", () => {
       const redFlag={
 
         title:'test title',
+        type:'red-flag',
         location:'1.9706, 30.1044',
         comment: 'test comment'
 

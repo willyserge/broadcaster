@@ -49,15 +49,15 @@ class Records{
           const {error}=Validate.createRedFlag(req.body);
           if(error) return res.status(400).send({
             status:400,
-            error:error.details[0].message
+            error:error.details[0].message.replace(/"/g, '')
           });
 
-          const redFlag={
+          let redFlag={
               id:incidents.length+1,
               title:req.body.title,
               createdOn: new Date().toISOString(),
               createdBy: req.user.id,
-              type: 'red-flag',
+              type: req.body.type,
               location:req.body.location,
               status: 'draft',
               images: [],
@@ -95,7 +95,7 @@ class Records{
          const {error}= Validate.updateLocation(req.body);
           if(error) return res.status(400).send({
             status:400,
-            error:error.details[0].message
+            error:error.details[0].message.replace(/"/g, '')
           });
           redFlag.location = req.body.location;
           res.status(200).send({
@@ -127,7 +127,7 @@ class Records{
         const {error}= Validate.updateComment(req.body);
          if(error) return res.status(400).send({
            status:400,
-           error:error.details[0].message
+           error:error.details[0].message.replace(/"/g, '')
          });
          redFlag.location = req.body.comment;
          res.status(200).send({
@@ -183,7 +183,7 @@ class Records{
          const {error}= Validate.changeStatus(req.body);
          if(error) return res.status(400).send({
            status:400,
-           error:error.details[0].message
+           error:error.details[0].message.replace(/"/g, '')
          });
          redFlag.status = req.body.status;
          res.status(200).send({
