@@ -9,8 +9,7 @@
     "build": "babel server -d dist",
     "start": "npm run build && nodemon dist/index.js",
     "serve": "node dist/index.js",
-    "lint":"eslint **/*.js --ignore-pattern node_modules/"
-
+    "lint": "eslint **/*.js --ignore-pattern node_modules/"
   },
   "engines": {
     "node": "10.16.0",
@@ -50,6 +49,7 @@
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pg": "^7.14.0"
   }
 }
