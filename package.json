@@ -7,8 +7,10 @@
     "test": "mocha --require @babel/register server/test --exit",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "build": "babel server -d dist",
-    "start": "node dist/index.js",
-    "serve": "node dist/index.js"
+    "start": "npm run build && nodemon dist/index.js",
+    "serve": "node dist/index.js",
+    "lint":"eslint **/*.js --ignore-pattern node_modules/"
+
   },
   "engines": {
     "node": "10.16.0",
@@ -33,6 +35,9 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.0.7",
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1"
   },
@@ -41,7 +46,6 @@
     "@hapi/joi": "^16.1.7",
     "bcrypt": "^3.0.6",
     "dotenv": "^8.2.0",
-    "eslint": "^6.7.1",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
