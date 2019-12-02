@@ -2,6 +2,7 @@ import 'express-async-errors';
 import '@babel/polyfill';
 import express from 'express';
 import dotenv from 'dotenv';
+import './db';
 
 import router from './routes/authRoutes';
 import recordsRouter from './routes/recordsRoutes';
