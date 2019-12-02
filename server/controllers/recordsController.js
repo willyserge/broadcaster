@@ -6,7 +6,7 @@ class Records {
 
   // get all redfrag record
   static async getAllRedFrags(req, res) {
-    const {id} = req.user;
+    const { id } = req.user;
 
     const redflags = incidents.filter((incident) => incident.createdBy == id);
 
