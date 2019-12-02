@@ -1,14 +1,13 @@
 import { Pool } from 'pg';
-import env from 'dotenv';
+import dotenv from 'dotenv';
 import models from './models';
 
-env.config();
+dotenv.config();
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  password: 4512,
-  database: 'broadcaster',
-
+  user: process.env.dbUser,
+  host: process.env.dbHost,
+  password: process.env.dbPassword,
+  database: process.env.dbName,
 
 });
 
