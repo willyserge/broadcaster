@@ -18,4 +18,37 @@ Features
 7.Admin can change the status of a record to either under investigation, rejected (in the event of a false claim) or resolved (in the event that the claim has been investigated and resolved).     
 
 
-UI TEMPLATE : https://willyserge.github.io/broadcaster/UI
+
+## Technologies
+  
+     ## Backend
+
+- [NodeJs](https://nodejs.org/) - Web Server.
+- [ExpressJs](https://expressjs.com/) - Server framework.
+- [Babel](https://babeljs.io/) - ES6 Javascript compiler.
+- [Eslint](https://eslint.org/) - Javascript code and syntax linter (Airbnb style guide was implemented on this project).
+    
+      ## Frontend
+    
+ - HTML AND CSS
+
+## Testing tools
+
+- [Mocha](https://mochajs.org/) - Javascript Test Framework.
+- [Chai](https://www.chaijs.com/) - Javascript Assertion Library.
+- [NYC](https://github.com/istanbuljs/nyc) - Istanbul's command line interface.
+
+## Installation and usage
+
+1. Clone this repo with `git clone https://github.com/willyserge/broadcaster.git`,
+2. Run `npm install` to install dependencies.
+2. Run `npm run coverage` to test and check test coverage status .
+3. Run `npm start` to start the server
+
+## UI template
+https://willyserge.github.io/broadcaster/UI
+
+
+
+
+
