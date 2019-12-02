@@ -14,9 +14,9 @@ dotenv.config();
 
 app.use(express.json());
 
-app.use('/api/v1/auth/', router);
-app.use('/api/v1/red-flags/', recordsRouter);
-app.use('/api/v1/admin/', adminRouter);
+app.use('/api/v2/auth/', router);
+app.use('/api/v2/red-flags/', recordsRouter);
+app.use('/api/v2/admin/', adminRouter);
 
 // documentation route
 app.get('/', (req, res) => res.status(200).json({

@@ -8,7 +8,7 @@ const token = process.env.TEST_TOKEN;
 describe('Server', () => {
 
   // testing sign up route
-  describe('POST /api/v1/auth/signup', () => {
+  describe('POST /api/v2/auth/signup', () => {
     it('should create a user', (done) => {
       const user = {
         firstname: 'user',
@@ -20,7 +20,7 @@ describe('Server', () => {
       };
 
       chai.request(app)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.status).to.be.equal(201);
@@ -34,7 +34,7 @@ describe('Server', () => {
     });
   });
   // sign in route test
-  describe('POST /api/v1/auth/signin', () => {
+  describe('POST /api/v2/auth/signin', () => {
     it('should login user and return auth token', (done) => {
       const user = {
         email: 'user@gmail.com',
@@ -42,7 +42,7 @@ describe('Server', () => {
       };
 
       chai.request(app)
-        .post('/api/v1/auth/signin')
+        .post('/api/v2/auth/signin')
         .send(user)
         .end((err, res) => {
           expect(res.status).to.be.equal(200);
@@ -57,10 +57,10 @@ describe('Server', () => {
     });
   });
   // test get all red flags route
-  describe('GET /api/v1/red-flags', () => {
+  describe('GET /api/v2/red-flags', () => {
     it('should get all red-flag records', (done) => {
       chai.request(app)
-        .get('/api/v1/red-flags')
+        .get('/api/v2/red-flags')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.body.status).to.be.equal(200);
@@ -71,12 +71,12 @@ describe('Server', () => {
     });
   });
   // test get red-flag by id
-  describe('GET /api/v1/red-flags/id', () => {
+  describe('GET /api/v2/red-flags/id', () => {
     it('should get a red-flag record by its ID', (done) => {
 
 
       chai.request(app)
-        .get('/api/v1/red-flags/1')
+        .get('/api/v2/red-flags/1')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.body.status).to.be.equal(200);
@@ -89,7 +89,7 @@ describe('Server', () => {
 
   // test create red-flag
 
-  describe('POST /api/v1/red-flags', () => {
+  describe('POST /api/v2/red-flags', () => {
     it('should create a red-flag record', (done) => {
 
       // other specs for the redflag are specified in the pushed object
@@ -103,7 +103,7 @@ describe('Server', () => {
       };
 
       chai.request(app)
-        .post('/api/v1/red-flags')
+        .post('/api/v2/red-flags')
         .set('x-auth-token', process.env.test_token)
         .send(redFlag)
         .end((err, res) => {
@@ -118,14 +118,14 @@ describe('Server', () => {
     });
   });
   // testing the update location route
-  describe('PATCH  /api/v1/red-flags/id/location', () => {
+  describe('PATCH  /api/v2/red-flags/id/location', () => {
     it("should successfully update a red-flag's location", (done) => {
       const newLocation = {
         location: '14131, 6575',
       };
 
       chai.request(app)
-        .patch('/api/v1/red-flags/2/location')
+        .patch('/api/v2/red-flags/2/location')
         .set('x-auth-token', process.env.test_token)
         .send(newLocation)
         .end((err, res) => {
@@ -142,7 +142,7 @@ describe('Server', () => {
     it('should not find a red-flag record', (done) => {
 
       chai.request(app)
-        .patch('/api/v1/red-flags/8/location')
+        .patch('/api/v2/red-flags/8/location')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.status).to.be.equal(404);
@@ -157,7 +157,7 @@ describe('Server', () => {
     it('should not be able to edit a red-flag location', (done) => {
 
       chai.request(app)
-        .patch('/api/v1/red-flags/1/location')
+        .patch('/api/v2/red-flags/1/location')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.status).to.be.equal(405);
@@ -170,14 +170,14 @@ describe('Server', () => {
     });
   });
   // testing the update comment endpoint
-  describe('PATCH  /api/v1/red-flags/id/comment', () => {
+  describe('PATCH  /api/v2/red-flags/id/comment', () => {
     it('should successfully update a red-flag comment', (done) => {
       const newComment = {
         comment: 'test comment',
       };
 
       chai.request(app)
-        .patch('/api/v1/red-flags/2/comment')
+        .patch('/api/v2/red-flags/2/comment')
         .set('x-auth-token', process.env.test_token)
         .send(newComment)
         .end((err, res) => {
@@ -194,7 +194,7 @@ describe('Server', () => {
     it('should not find a red-flag record', (done) => {
 
       chai.request(app)
-        .patch('/api/v1/red-flags/8/comment')
+        .patch('/api/v2/red-flags/8/comment')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.status).to.be.equal(404);
@@ -207,11 +207,11 @@ describe('Server', () => {
     });
   });
   // testing delete red-flag route
-  describe('DELETE  /api/v1/red-flags/id', () => {
+  describe('DELETE  /api/v2/red-flags/id', () => {
     it('should successfully delete a red-flag record', (done) => {
 
       chai.request(app)
-        .delete('/api/v1/red-flags/2')
+        .delete('/api/v2/red-flags/2')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.status).to.be.equal(200);
@@ -228,7 +228,7 @@ describe('Server', () => {
     it('should not find a red-flag record ', (done) => {
 
       chai.request(app)
-        .delete('/api/v1/red-flags/8')
+        .delete('/api/v2/red-flags/8')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.status).to.be.equal(404);
@@ -243,14 +243,14 @@ describe('Server', () => {
 
   // admin change status route
 
-  describe('PATCH  /api/v1/red-flags/id/status', () => {
+  describe('PATCH  /api/v2/red-flags/id/status', () => {
     it('should successfully change the status of a red-flag', (done) => {
       const newStatus = {
         status: 'under investigation',
       };
 
       chai.request(app)
-        .patch('/api/v1/admin/red-flags/1/status')
+        .patch('/api/v2/admin/red-flags/1/status')
         .set('x-auth-token', process.env.test_token)
         .send(newStatus)
         .end((err, res) => {
@@ -267,7 +267,7 @@ describe('Server', () => {
     it('should not find a red-flag record ', (done) => {
 
       chai.request(app)
-        .patch('/api/v1/admin/red-flags/8/status')
+        .patch('/api/v2/admin/red-flags/8/status')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.body.status).to.be.equal(404);
@@ -277,10 +277,10 @@ describe('Server', () => {
     });
   });
 
-  describe('GET api/v1/admin/red-flags', () => {
+  describe('GET api/v2/admin/red-flags', () => {
     it('should list all incidents by all users', (done) => {
       chai.request(app)
-        .get('/api/v1/admin/red-flags')
+        .get('/api/v2/admin/red-flags')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.status).to.be.equal(200);
