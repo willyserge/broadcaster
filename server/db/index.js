@@ -4,11 +4,7 @@ import models from './models';
 
 dotenv.config();
 const pool = new Pool({
-  user: process.env.dbUser,
-  host: process.env.dbHost,
-  password: process.env.dbPassword,
-  database: process.env.dbName,
-
+  connectionString: process.env.DATABASE_URL,
 });
 
 
