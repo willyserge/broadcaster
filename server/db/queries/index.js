@@ -7,7 +7,7 @@ export default async (client) => {
     await client.query(incidents.CREATE_TABLE);
     console.log(`
     ----------------------
-    | Initialized models |
+    | created tables      |
     ----------------------`);
   } catch (error) {
     console.log(error);

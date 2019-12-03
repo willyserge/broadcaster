@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
-import models from './models';
+import queries from './queries';
 
 dotenv.config();
 const pool = new Pool({
@@ -13,7 +13,7 @@ const pool = new Pool({
   try {
     // start transaction
     await client.query('BEGIN');
-    await models(client);
+    await queries(client);
     await client.query('COMMIT');
   } catch (error) {
     await client.query('ROLLBACK');
