@@ -6,7 +6,3 @@ node_js:
 after_success:
   - npm run coverage
 
-env:
-  - jwtPrivateKey : "mybroadcasterapp"
-  - test_token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTc0NTE0Njc5fQ.oGR9BysE4MCTX4ONRLZnqUirnGNIJXJGtaWD7b-4M0U"
-  - DATABASE_URL : 'postgresql://postgres:4512@localhost:/broadcaster'
