@@ -3,7 +3,7 @@ export default {
   CREATE TABLE IF NOT EXISTS incidents (
     id  SERIAL PRIMARY KEY,
     createdBy INT NOT NULL,
-    title VARCHAR(20) NOT NULL,
+    title VARCHAR(150) NOT NULL,
     comment VARCHAR(255) NOT NULL,
     type VARCHAR(20) NOT NULL,
     location VARCHAR(255) NOT NULL,
