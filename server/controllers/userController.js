@@ -1,13 +1,12 @@
-import _ from 'lodash';
-import users from '../data/users';
 import Validate from '../helpers/validator';
 import Auth from '../helpers/authHelpers';
+import User from '../db/models/users';
 
-class User {
+class UserController {
   // registering users
   static async signUp(req, res) {
-    // validate inputs first
 
+    // validate inputs
     const { error } = Validate.register(req.body);
     if (error) {
       return res.status(400).send({
@@ -17,40 +16,32 @@ class User {
     }
 
     // find if the user with the given email exist
-    let user = users.find((u) => u.email === req.body.email);
-    if (user) {
+    let user = await User.findEmail(req.body.email);
+    if (user.rows[0]) {
       return res.status(409).send({
         status: 409,
         error: 'Email already exist',
       });
     }
-    // initialize and create  new user
-    user = {
-      id: users.length + 1,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      username: req.body.username,
-      email: req.body.email,
-      registered: new Date().toISOString(),
-      password: req.body.password,
-
-    };
-
-    const token = await Auth.generateToken(user.id, user.firstname);
-    user.password = await Auth.hashPassword(user.password);
-    users.push(user);
-    // response spec
+    // hash user password
+    const password = await Auth.hashPassword(req.body.password);
+    const {
+      firstname, lastname, username, phoneNumber, email,
+    } = req.body;
+    user = await User.createUser(firstname, lastname, username, phoneNumber, email, password);
+    // generate token
+    const { id, admin } = user.rows[0];
+    const token = await Auth.generateToken(id, admin);
     return res.header('x-auth-token', token).status(201).send({
       status: 201,
       data: [{
         token,
-        user: _.pick(user, ['firstname', 'lastname', 'email']),
+        user: user.rows[0],
       }],
     });
-
   }
 
-  // authenticating users
+
   static async signIn(req, res) {
     // validate inputs first
     const { error } = Validate.signIn(req.body);
@@ -61,15 +52,15 @@ class User {
       });
     }
     // find if the user with the given email exist
-    const user = users.find((u) => u.email === req.body.email);
-    if (!user) {
+    const user = await User.findEmail(req.body.email);
+    if (!user.rows[0]) {
       return res.status(400).send({
         status: 401,
         error: 'invalid Email or Password',
       });
     }
 
-    const validPassword = await Auth.comparePassword(req.body.password, user.password);
+    const validPassword = await Auth.comparePassword(req.body.password, user.rows[0].password);
     if (!validPassword) {
       return res.status(400).send({
         status: 401,
@@ -77,17 +68,16 @@ class User {
       });
     }
 
-    const token = await Auth.generateToken(user.id);
+    const { id, admin } = user.rows[0];
+    const token = await Auth.generateToken(id, admin);
     res.header('x-auth-token', token).status(200).send({
       status: 200,
       message: 'User is successfuly logged in',
       data: [{
         token,
-        user: _.pick(user, ['firstname', 'lastname']),
+        user: user.rows[0].email,
       }],
     });
-
   }
-
 }
-export default User;
+export default UserController;
