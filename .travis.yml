@@ -13,7 +13,7 @@ addons:
   postgresql: "10"
 
 before_script:
-  - psql -c 'create database broadcaster;' -U postgres
+   - psql -c 'create database broadcaster;' -U postgres
 
 
 
