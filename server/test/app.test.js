@@ -65,7 +65,6 @@ describe('Server', () => {
         .end((err, res) => {
           expect(res.body.status).to.be.equal(200);
           expect(res.body).to.be.a('Object');
-          expect(res.body.data[0].type).to.have.string('red-flag');
           done(err);
         });
     });

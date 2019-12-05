@@ -6,3 +6,14 @@ node_js:
 after_success:
   - npm run coverage
 
+services:
+  - postgresql
+
+addons:
+  postgresql: "10"
+
+before_script:
+   - psql -c 'create database broadcaster;' -U postgres
+
+
+
