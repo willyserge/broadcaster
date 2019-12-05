@@ -126,36 +126,43 @@ static async getRedFlagById(req, res) {
 
   // udate redflag comment
 
+
   static async updateComment(req, res) {
-    const {id} = req.params;
+    const { id } = req.params;
     // eslint-disable-next-line radix
-    const redFlag = await RedFlag.findById(parseInt(id), req.user.id, incidents);
-    if (!redFlag) {
-      res.status(404).send({
-        status: 404,
-        error: 'a red-flag with the given ID was not found.',
-      });
-    }
-    else {
-
-      const { error } = Validate.updateComment(req.body);
-      if (error) {return res.status(400).send({
+    if (isNaN(id)) {
+      res.send({
         status: 400,
-        error: error.details[0].message.replace(/"/g, '')
-      });}
-      redFlag.location = req.body.comment;
-      res.status(200).send({
-        status: 200,
-        data: [
-          {
-            id: redFlag.id,
-            message: "Updated red-flag record's comment",
-          },
-        ],
-
+        error: 'enter a valid id.',
       });
-    }
+    } else {
+      let redFlag = await IncidentsModel.getOneIncident(id, req.user.id);
+      if (!redFlag.rows[0]) {
+        res.status(404).send({
+          status: 404,
+          error: 'a red-flag with the given ID was not found.',
+        });
+      } else {
+        const { error } = Validate.updateComment(req.body);
+        if (error) {
+          res.status(400).send({
+            status: 400,
+            error: error.details[0].message.replace(/"/g, ''),
+          });
+        }
+        redFlag = await IncidentsModel.updateIncidentComment(id, req.user.id, req.body.comment);
+        res.status(200).send({
+          status: 200,
+          data: [
+            {
+              id: redFlag.rows[0].id,
+              message: "Updated red-flag record's comment",
+            },
+          ],
 
+        });
+      }
+    }
   }
 
   // delete redflag record
