@@ -39,14 +39,18 @@ html,body {
 
 .nav a {
     padding: 0px 5px;
+    margin:0px 5px;
+    border:1px solid #00E2FF;
+}
+
+.nav a:hover{
+    background: #2ecc71;
+   
 }
 #logo{
     font-size: 20px;
 }
-.nav a:hover{
-    text-decoration: underline;
-    color: #4CAF50;
-}
+
 
 
 
@@ -146,7 +150,7 @@ button{
     font-size: 20px;
 }
 
-input[type=text] {
+input[type=email] {
     width: 90%;
     padding: 12px;
     border: 1px solid #ccc;
