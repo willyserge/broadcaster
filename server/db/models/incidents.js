@@ -16,5 +16,11 @@ class IncidentsModel {
     const res = pool.query(query, [id, userId]);
     return res;
   }
+
+  static createIncident(title, createdBy, type, location, comment) {
+    const query = 'INSERT INTO incidents (title, createdBy, type,location,comment) VALUES ($1, $2, $3, $4, $5)RETURNING id ';
+    const res = pool.query(query, [title, createdBy, type, location, comment]);
+    return res;
+  }
 }
 export default IncidentsModel;

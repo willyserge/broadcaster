@@ -53,38 +53,32 @@ static async getRedFlagById(req, res) {
 }
   // create a red flag record
 
+  // create a red flag record
+
   static async createRedFlag(req, res) {
-
     const { error } = Validate.createRedFlag(req.body);
-    if (error) {return res.status(400).send({
-      status: 400,
-      error: error.details[0].message.replace(/"/g, '')
-    });}
+    if (error) {
+      return res.status(400).send({
+        status: 400,
+        error: error.details[0].message.replace(/"/g, ''),
+      });
+    }
 
-    const redFlag = {
-      id: incidents.length + 1,
-      title: req.body.title,
-      createdOn: new Date().toISOString(),
-      createdBy: req.user.id,
-      type: req.body.type,
-      location: req.body.location,
-      status: 'draft',
-      images: [],
-      videos: [],
-      comment: req.body.comment,
-
-    };
-    incidents.push(redFlag);
+    const {
+      title, type, location, comment,
+    } = req.body;
+    const userId=req.user.id;
+    const incident = await IncidentsModel.createIncident(title , userId , type, location, comment);
     res.status(201).send({
       status: 201,
       data: [{
-        id: redFlag.id,
+        id: incident.rows[0].id,
         message: 'Created red-flag record',
 
       }],
     });
-
   }
+  
 
   // update red-flag location
   static async updateLocation(req, res) {
