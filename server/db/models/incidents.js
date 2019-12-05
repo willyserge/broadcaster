@@ -22,5 +22,12 @@ class IncidentsModel {
     const res = pool.query(query, [title, createdBy, type, location, comment]);
     return res;
   }
+
+  
+  static updateIncidentLocation(id, userId, location) {
+    const query = 'UPDATE incidents SET location = $1  WHERE createdBy = $2 AND id= $3 RETURNING id';
+    const res = pool.query(query, [location, userId, id]);
+    return res;
+  }
 }
 export default IncidentsModel;
