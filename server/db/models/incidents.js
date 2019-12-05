@@ -1,11 +1,19 @@
 import pool from '../index';
 
-// Created this for testing purposes (waiting confirmation on structure)
 
 class IncidentsModel {
-  static getAllIncidents(tableName) {
-    const query = `SELECT * FROM ${tableName} ORDER BY id ASC`;
-    const res = pool.query(query);
+  static getAllIncidentsByUser(id) {
+    const query = `SELECT * FROM incidents
+    WHERE createdby = $1`;
+    const res = pool.query(query, [id]);
+    return res;
+  }
+
+  static getOneIncident(id, userId) {
+    const query = `SELECT *
+    FROM incidents
+    WHERE id = $1 AND createdBy = $2`;
+    const res = pool.query(query, [id, userId]);
     return res;
   }
 }

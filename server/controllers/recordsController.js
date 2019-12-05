@@ -1,50 +1,56 @@
 import incidents from '../data/incidents';
 import Validate from '../helpers/validator';
 import RedFlag from '../helpers/recordsHelpers';
+import IncidentsModel from '../db/models/incidents';
 
 class Records {
 
-  // get all redfrag record
-  static async getAllRedFrags(req, res) {
-    const { id } = req.user;
+    // get all redfrag record
+    static async getAllRedFrags(req, res) {
+      const { id } = req.user;
 
-    const redflags = incidents.filter((incident) => incident.createdBy == id);
-
-    if (!redflags[0]) { 
-      res.status(204).send({
-        status: 204,
-        error: 'no red-flag records.',
-      });
+      const redflags = await IncidentsModel.getAllIncidentsByUser(id);
+      if (!redflags.rows) {
+        // to ask lfa about using 404 or 204
+        res.status(204).send({
+          status: 204,
+          error: 'no red-flag records.',
+        });
+      } else {
+        res.status(200).send({
+          status: 200,
+          data: redflags.rows[0],
+        });
+      }
     }
-    else {
-      res.status(200).send({
-        status: 200,
-        data: redflags,
-      });
-    }
 
-  }
+// get red-flag record by id
+static async getRedFlagById(req, res) {
+  const { id } = req.params;
+  // eslint-disable-next-line radix
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(id)) {
+     res.status(400).send({
+      status: 400,
+      error: 'enter a valid ID.',
+  }); 
+} else {
+    const redFlag = await IncidentsModel.getOneIncident(id, req.user.id);
 
-  // get red-flag record by id
-  static async getRedFlagById(req, res) {
-    const {id} = req.params;
-    // eslint-disable-next-line radix
-    const redFlag = await RedFlag.findById(parseInt(id), req.user.id, incidents);
-
-    if (!redFlag) {
+    if (!redFlag.rows[0]) {
       res.status(404).send({
         status: 404,
         error: 'a red-flag with the given ID was not found.',
       });
-    }
-    else {
+    } else {
       res.status(200).send({
         status: 200,
-        data: [redFlag],
+        data: redFlag.rows[0],
 
       });
     }
   }
+}
   // create a red flag record
 
   static async createRedFlag(req, res) {
