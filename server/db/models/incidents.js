@@ -33,6 +33,6 @@ class IncidentsModel {
     const query = 'UPDATE incidents SET comment = $1  WHERE createdBy = $2 AND id= $3 RETURNING id';
     const res = pool.query(query, [comment, userId, id]);
     return res;
-  }it 
+  }
 }
 export default IncidentsModel;
