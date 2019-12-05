@@ -33,6 +33,11 @@ class IncidentsModel {
     const query = 'UPDATE incidents SET comment = $1  WHERE createdBy = $2 AND id= $3 RETURNING id';
     const res = pool.query(query, [comment, userId, id]);
     return res;
-  }it 
+  }
+  static deleteIncident(id, userId) {
+    const query = 'DELETE FROM incidents WHERE id = $1 AND createdBy = $2 RETURNING id';
+    const res = pool.query(query, [id, userId]);
+    return res;
+  }
 }
 export default IncidentsModel;

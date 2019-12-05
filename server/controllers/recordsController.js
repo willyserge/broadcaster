@@ -167,33 +167,37 @@ static async getRedFlagById(req, res) {
 
   // delete redflag record
   static async deleteRedflag(req, res) {
-
     const { id } = req.params;
     // eslint-disable-next-line radix
-    const redFlag = await RedFlag.findById(parseInt(id), req.user.id, incidents);
-    if (!redFlag) {
-      res.status(404).send({
-        status: 404,
-        error: 'a red-flag with the given ID was not found.',
+    if (isNaN(id)) {
+      res.send({
+        status: 400,
+        error: 'enter a valid id.',
       });
+    } else {
+      let redFlag = await IncidentsModel.getOneIncident(id, req.user.id);
+      if (!redFlag.rows[0]) {
+        res.status(404).send({
+          status: 404,
+          error: 'a red-flag with the given ID was not found.',
+        });
+      } else {
+        redFlag = await IncidentsModel.deleteIncident(id, req.user.id);
+
+        res.status(200).send({
+          status: 200,
+          data: [
+            {
+              id: redFlag.rows[0].id,
+              message: 'red-flag record has been deleted',
+            },
+          ],
+
+        });
+      }
     }
-    else {
-      const index = incidents.indexOf(redFlag);
-      incidents.splice(index, 1);
-
-      res.status(200).send({
-        status: 200,
-        data: [
-          {
-            id: redFlag.id,
-            message: 'red-flag record has been deleted',
-          },
-        ],
-
-      });
-    }
-
   }
+
 
   static async changeStatus(req, res) {
     const { id } = req.params;
