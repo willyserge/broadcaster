@@ -199,44 +199,45 @@ static async getRedFlagById(req, res) {
   }
 
 
+ 
   static async changeStatus(req, res) {
     const { id } = req.params;
     // eslint-disable-next-line radix
-    const redFlag = incidents.find((incident) => incident.id === parseInt(id));
-    if (!redFlag) {
+    let redFlag = await IncidentsModel.adminFindOneRecord(id);
+    if (!redFlag.rows[0]) {
       res.status(404).send({
         status: 404,
         error: 'a red-flag with the given ID was not found.',
       });
-    }
-    else {
+    } else {
       const { error } = Validate.changeStatus(req.body);
-      if (error) {return res.status(400).send({
-        status: 400,
-        error: error.details[0].message.replace(/"/g, '')
-      });}
-      redFlag.status = req.body.status;
+      if (error) {
+        return res.status(400).send({
+          status: 400,
+          error: error.details[0].message.replace(/"/g, ''),
+        });
+      }
+      redFlag = await IncidentsModel.adminChangeStatus(id, req.body.status);
       res.status(200).send({
         status: 200,
         data: [
           {
-            id: redFlag.id,
+            id: redFlag.rows[0].id,
             message: "Changed red-flag record's status",
           },
         ],
 
       });
-
     }
-
   }
 
   // admin should get all red-flags
   static async AdminGetAllRedFrags(req, res) {
+    const redflags = await IncidentsModel.adminGetAllIncidents();
     res.status(200).send(
       {
         status: 200,
-        data: incidents,
+        data: redflags.rows,
       },
     );
   }

@@ -39,5 +39,17 @@ class IncidentsModel {
     const res = pool.query(query, [id, userId]);
     return res;
   }
+
+  static adminChangeStatus(id, newStatus) {
+    const query = 'UPDATE incidents SET status = $1  WHERE id = $2  RETURNING id';
+    const res = pool.query(query, [newStatus, id]);
+    return res;
+  }
+
+  static adminGetAllIncidents() {
+    const query = 'SELECT * FROM incidents';
+    const res = pool.query(query);
+    return res;
+  }
 }
 export default IncidentsModel;
