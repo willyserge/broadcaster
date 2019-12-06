@@ -11,9 +11,6 @@ parserOptions:
   ecmaVersion: 2018
   sourceType: module
 rules: {
-  linebreak-style:  [
-            "error",
-            "windows"
-        ]
+  linebreak-style:  0
   
 }
