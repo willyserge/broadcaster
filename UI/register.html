@@ -26,13 +26,13 @@
         <div class="form">
           <h1 id="form-title">BROADCASTER</h1>
           <form autocomplete="off" action="userProfile.html">
-            <input type="text" placeholder="Fist name" />
-            <input type="text" placeholder="Last name" />
-            <input type="email" placeholder="Email" />
-            <input type="text" placeholder="phone number" />
-            <input type="text" placeholder="username" />
-            <input type="password" placeholder="Password" />
-            <input type="password" placeholder="Repeat password" />
+            <input type="text" placeholder="Fist name" minlength=3 required/>
+            <input type="text" placeholder="Last name" minlength=3 required/>
+            <input type="email" placeholder="Email" required/>
+            <input type="text" placeholder="phone number" minlength="8"  maxlength="15" required/>
+            <input type="text" placeholder="username" required/>
+            <input type="password" placeholder="Password" minlength="6" required/>
+            <input type="password" placeholder="Repeat password" minlength="6" required/>
 
             <button id="signup_btn">create account</button>
             <a href="login.html">have an account?</a>
