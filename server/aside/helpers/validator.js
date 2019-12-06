@@ -17,7 +17,7 @@ class Validate {
   static signIn(credentials) {
     const schema = Joi.object({
       email: Joi.string().email().required(),
-      password: Joi.string().required(),
+      password: Joi.string().min(6).required(),
     });
 
     return schema.validate(credentials);
@@ -25,32 +25,31 @@ class Validate {
 
   static createRedFlag(data) {
     const schema = Joi.object({
-      title: Joi.string().trim().min(6).required(),
-      type: Joi.string().trim().valid('red-flag', 'intervention').required(),
-      comment: Joi.string().trim().min(6).max(150).required(),
-      location: Joi.string().trim().required(),
+      title: Joi.string().min(6).required(),
+      type: Joi.string().valid('red-flag', 'intervention').required(),
+      comment: Joi.string().min(6).max(150).required(),
+      location: Joi.string().required(),
     });
     return schema.validate(data);
   }
 
   static updateLocation(location) {
     const schema = Joi.object({
-      location: Joi.string().trim().min(6).required(),
+      location: Joi.string().min(6).required(),
     });
     return schema.validate(location);
   }
 
   static updateComment(comment) {
     const schema = Joi.object({
-      comment: Joi.string().trim().min(10).max(150)
-        .required(),
+      comment: Joi.string().min(10).max(150).required(),
     });
     return schema.validate(comment);
   }
 
   static changeStatus(status) {
     const schema = Joi.object({
-      status: Joi.string().trim().valid('resolved', 'rejected', 'under investigation').required(),
+      status: Joi.string().valid('resolved', 'rejected', 'under investigation').required(),
     });
     return schema.validate(status);
   }

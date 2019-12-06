@@ -1,5 +1,6 @@
 import pool from '../index';
 
+// Created this for testing purposes (waiting confirmation on structure)
 
 class IncidentsModel {
   static getAllIncidentsByUser(id) {
@@ -23,20 +24,28 @@ class IncidentsModel {
     return res;
   }
 
-  
   static updateIncidentLocation(id, userId, location) {
     const query = 'UPDATE incidents SET location = $1  WHERE createdBy = $2 AND id= $3 RETURNING id';
     const res = pool.query(query, [location, userId, id]);
     return res;
   }
+
   static updateIncidentComment(id, userId, comment) {
     const query = 'UPDATE incidents SET comment = $1  WHERE createdBy = $2 AND id= $3 RETURNING id';
     const res = pool.query(query, [comment, userId, id]);
     return res;
   }
+
   static deleteIncident(id, userId) {
     const query = 'DELETE FROM incidents WHERE id = $1 AND createdBy = $2 RETURNING id';
     const res = pool.query(query, [id, userId]);
+    return res;
+  }
+
+  static adminFindOneRecord(id) {
+    const query = `SELECT * FROM incidents
+    WHERE id = $1`;
+    const res = pool.query(query, [id]);
     return res;
   }
 

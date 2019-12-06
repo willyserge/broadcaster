@@ -23,6 +23,14 @@ class UserController {
         error: 'Email already exist',
       });
     }
+
+    user = await User.findUsername(req.body.username);
+    if (user.rows[0]) {
+      return res.status(409).send({
+        status: 409,
+        error: 'Username already exist',
+      });
+    }
     // hash user password
     const password = await Auth.hashPassword(req.body.password);
     const {
@@ -40,7 +48,7 @@ class UserController {
       }],
     });
   }
-
+ 
 
   static async signIn(req, res) {
     // validate inputs first

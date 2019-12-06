@@ -10,6 +10,20 @@ class User {
     return res;
   }
 
+  static findById(id) {
+    const query = `SELECT * FROM users
+    WHERE id = $1`;
+    const res = pool.query(query, [id]);
+    return res;
+  }
+
+  static findUsername(username) {
+    const query = `SELECT * FROM users
+    WHERE username = $1`;
+    const res = pool.query(query, [username]);
+    return res;
+  }
+
   static createUser(firstname, lastname, username, phoneNumber, email, password) {
     const query = 'INSERT INTO users (firstname, lastname, username,phoneNumber, email, password) VALUES ($1, $2, $3, $4, $5 ,$6)RETURNING firstname,lastname,email';
     const res = pool.query(query, [firstname, lastname, username, phoneNumber, email, password]);

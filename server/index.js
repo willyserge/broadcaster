@@ -22,7 +22,7 @@ app.use('/api/v2/admin/', adminRouter);
 // documentation route
 app.get('/', (req, res) => res.status(200).json({
   message: 'Welcome to Broadcaster. you can view the documentation of the API on the link below',
-  link: 'https://documenter.getpostman.com/view/8773430/SW7gUQu5',
+  link: 'https://documenter.getpostman.com/view/8773430/SW7dUR4j',
 
 }));
 

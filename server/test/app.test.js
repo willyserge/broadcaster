@@ -6,7 +6,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 const token = process.env.TEST_TOKEN;
 describe('Server', () => {
-/*
+
   // testing sign up route
   describe('POST /api/v2/auth/signup', () => {
     it('should create a user', (done) => {
@@ -209,7 +209,7 @@ describe('Server', () => {
     it('should successfully delete a red-flag record', (done) => {
 
       chai.request(app)
-        .delete('/api/v2/red-flags/2')
+        .delete('/api/v2/red-flags/6')
         .set('x-auth-token', process.env.test_token)
         .end((err, res) => {
           expect(res.status).to.be.equal(200);
@@ -289,7 +289,7 @@ describe('Server', () => {
     });
 
 
-  }); */
+  }); 
 });
 
 

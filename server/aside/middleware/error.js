@@ -4,7 +4,7 @@ class Error {
     res.status(500).send(
       {
         status: 500,
-        error: 'server error',
+        error: 'something failed',
       },
     );
   }
