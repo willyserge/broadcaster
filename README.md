@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/willyserge/broadcaster.svg?branch=ft-create-sign-up-route-162836478)](https://travis-ci.org/willyserge/broadcaster)
-[![Coverage Status](https://coveralls.io/repos/github/willyserge/broadcaster/badge.svg?branch=ch-tests-169932313)](https://coveralls.io/github/willyserge/broadcaster?branch=ch-tests-169932313)
-[![Maintainability](https://api.codeclimate.com/v1/badges/0a7528fefcb24c5b86d7/maintainability)](https://codeclimate.com/github/willyserge/broadcaster/maintainability)
-
 # broadcaster
 
 Corruption is a huge bane to Africa’s development. African countries must develop novel and localised solutions that will curb this menace, hence the birth of Broadcaster. Broadcaster enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention.
