@@ -41,7 +41,7 @@ Features
 2. Run `npm run coverage` to test and check test coverage status .
 3. Run `npm start` to start the server
 
-## UI template
+## UI template (just a few pages (core functionality not implemented yet))
 https://willyserge.github.io/broadcaster/UI
 
 
